@@ -10,7 +10,7 @@ class LogQueryClient {
 	public void addServer(ServerProperty server) {
 		serverList.add(server);
 	}
-	
+
 	public void connect(String[] args) {
 		ArrayList< LogQueryClientThread > worker_list =
 			new ArrayList< LogQueryClientThread >();
@@ -58,7 +58,7 @@ class LogQueryClient {
 			System.exit(-1);
 		}
 		LogQueryClient client = new LogQueryClient();
-		client.addServer(new ServerProperty("180.160.24.204", 1024));
+		client.addServer(new ServerProperty("127.0.0.1", 1024));
 		client.connect(args);
 	}
 }
