@@ -11,13 +11,13 @@ JC = javac
 
 # Java CLASSES
 CLASSES = \
-	logQueryClient.java \
-	logQueryClientThread.java \
-	logQueryServer.java \
-	logQueryServerThread.java \
-	serverProperties.java \
-	logFormatter.java \
-	logGenerator.java
+	LogQueryClient.java \
+	LogQueryClientThread.java \
+	LogQueryServer.java \
+	LogQueryServerThread.java \
+	ServerProperties.java \
+	LogFormatter.java \
+	LogGenerator.java
 
 # Default make target entry
 default: classes

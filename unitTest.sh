@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 ## Unit Test Configuration
-server_list=("127.0.0.1")
-port_list=(1024)
+server_list=("127.0.0.1" "127.0.0.1" "127.0.0.1")
+port_list=("1024")
 log_path="/tmp/logs"
 server_list_num=${#server_list[@]}
 result_path=/tmp/logQueryResult
@@ -41,7 +41,7 @@ generate_log
 ## Test greps for all logs
 test_grep "\"Frequent pattern from all logs\"" "(INFO|WARNING)"
 test_grep "\"Somewhat frequent pattern from all logs\"" "FINE"
-test_grep "\"Rare frequent pattern from all logs\"" "SEVERE"
+test_grep "\"Rare frequent pattern from all logs\"" "S"127.0.0.1"EVERE"
 
 ## Test greps for one log
 for ((j=1;j<=$server_list_num;j++)); do

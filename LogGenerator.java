@@ -101,7 +101,7 @@ public class LogGenerator
 			LOGGER.log(Level.SEVERE, null, ex);
 		}
 		// Set the formatting
-		fileHandler.setFormatter(new MyLogFormatter());
+		fileHandler.setFormatter(new LogFormatter());
 		LOGGER.addHandler(fileHandler);
 		// set all levels
 		LOGGER.setLevel(Level.ALL);

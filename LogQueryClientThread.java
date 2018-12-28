@@ -4,13 +4,13 @@ import java.util.List;
 import java.util.ArrayList;
 
 class LogQueryClientThread extends Thread {
-	private ServerProperty server = null;
+	private ServerProperties server = null;
 	private List< String > args = null;
 	private File resultFile = null;
 	private ObjectOutputStream output;
 	private BufferedReader input;
 	private LogQueryClient parent;
-	LogQueryClientThread(ServerProperty server, List< String > args, LogQueryClient parent) {
+	LogQueryClientThread(ServerProperties server, List< String > args, LogQueryClient parent) {
 		this.parent = parent;
 		this.server = server;
 		this.args = args;
@@ -44,10 +44,10 @@ class LogQueryClientThread extends Thread {
 	}
 
 	public File getResultFile() {
-		return resultFile;	
+		return resultFile;
 	}
 
-	public ServerProperty getServer() {
+	public ServerProperties getServer() {
 		return server;
 	}
 }

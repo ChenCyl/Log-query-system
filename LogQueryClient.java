@@ -4,17 +4,17 @@ import java.util.*;
 
 class LogQueryClient {
 	private Socket sock;
-	private ArrayList< ServerProperty > serverList =
-		new ArrayList< ServerProperty>();
+	private ArrayList< ServerProperties > serverList =
+		new ArrayList< ServerProperties >();
 
-	public void addServer(ServerProperty server) {
+	public void addServer(ServerProperties server) {
 		serverList.add(server);
 	}
 
 	public void connect(String[] args) {
 		ArrayList< LogQueryClientThread > worker_list =
 			new ArrayList< LogQueryClientThread >();
-		for (ServerProperty server : serverList) {
+		for (ServerProperties server : serverList) {
 			LogQueryClientThread worker =
 				new LogQueryClientThread(server, Arrays.asList(args), this);
 			worker_list.add(worker);
@@ -30,7 +30,7 @@ class LogQueryClient {
 		}
 	}
 
-	private void printResult(ServerProperty server, File resultFile) {
+	private void printResult(ServerProperties server, File resultFile) {
 		if (resultFile == null) {
 			return;
 		}
@@ -58,7 +58,7 @@ class LogQueryClient {
 			System.exit(-1);
 		}
 		LogQueryClient client = new LogQueryClient();
-		client.addServer(new ServerProperty("127.0.0.1", 1024));
+		client.addServer(new ServerProperties("127.0.0.1", 1024));
 		client.connect(args);
 	}
 }
