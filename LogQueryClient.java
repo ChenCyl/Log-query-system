@@ -81,8 +81,9 @@ class LogQueryClient {
 		if (args.length < 1) {
 			System.out.println("Usage: java LogQueryClient <grep_arg1> <grep_arg2> ... <grep_argN>");
 			//System.out.println("Connecting to <IP, Port> format on serverList.txt");
+			System.exit(-1);
 		}
-		System.exit(-1);
+
 		LogQueryClient client = new LogQueryClient();
 
 		//Fetching the <IP, Port> values defined in serverList.txt
@@ -90,7 +91,7 @@ class LogQueryClient {
 		//client.read(serverListFile);
 
 		client.addServer(new ServerProperties("127.0.0.1", 1024));
-		client.addServer(new ServerProperties("192.168.1.101", 1024));
+		client.addServer(new ServerProperties("192.168.43.245", 9001));
 		client.addServer(new ServerProperties("192.168.1.106", 1024));
 		client.connect(args);
 	}
