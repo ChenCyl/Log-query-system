@@ -1,12 +1,18 @@
 #!/usr/bin/env bash
 
 ## Unit Test Configuration
+
+# Add the servers needed to test according to LogQueryClient.java
+# execution on the function addServer()
 server_list=("192.168.43.85")
 port_list=(1024)
+
 log_path="/tmp/logs"
 server_list_num=${#server_list[@]}
 result_path=/tmp/logQueryResult
 answer_path=/tmp/logQueryAnswer
+
+# Fixed size log query generator
 filesize=1
 
 ## arg1 = unit test name, arg2 = grep args
