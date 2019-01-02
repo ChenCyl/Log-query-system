@@ -10,6 +10,12 @@ class LogQueryClientThread extends Thread {
 	private ObjectOutputStream output;
 	private BufferedReader input;
 	private LogQueryClient parent;
+
+	/*
+	server: <IP, Port> values
+	args: grep args to be queries on the server
+	parent: parent process requesting the thread execution
+	*/
 	LogQueryClientThread(ServerProperties server, List< String > args, LogQueryClient parent) {
 		this.parent = parent;
 		this.server = server;
@@ -19,10 +25,14 @@ class LogQueryClientThread extends Thread {
 	public void run() {
 		try {
 			Socket sock = new Socket(server.ip, server.port);
+
+			//Final output answer from server according to grep query
 			output = new ObjectOutputStream(sock.getOutputStream());
 			input = new BufferedReader(new InputStreamReader(sock.getInputStream()));
 			output.writeObject(args);
 			output.flush();
+
+			//Temp files are managed as long as ensuring better scalability
 			resultFile = File.createTempFile(server.ip + "_" + server.port, ".log");
 			BufferedWriter tmpOut = new BufferedWriter(new FileWriter(resultFile));
 			String line;

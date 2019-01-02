@@ -10,7 +10,7 @@ class LogQueryServerThread extends Thread {
 
 	LogQueryServerThread(Socket client_sock, String log_file_path) {
 		if (client_sock == null) {
-			System.out.println("client_sock can not be null.");
+			System.out.println("client_sock can not be NULL");
 			System.exit(-1);
 		}
 		this.clientSock = client_sock;
@@ -19,7 +19,7 @@ class LogQueryServerThread extends Thread {
 
 	private void exceptionHandler(Exception ex) {
 		System.out.println(ex.getMessage());
-	}	
+	}
 
 	private void grep(List< String > args) {
 		Runtime runtime = Runtime.getRuntime();
@@ -46,11 +46,11 @@ class LogQueryServerThread extends Thread {
 	}
 
 	public void run() {
-		try {	
+		try {
 			output = new BufferedWriter(new OutputStreamWriter(clientSock.getOutputStream()));
 			input = new ObjectInputStream(clientSock.getInputStream());
 			List< String > args = (List< String >) input.readObject();
-			System.out.println("Received request: " + args.toString());
+			System.out.println("Received grep query: " + args.toString());
 			grep(args);
 			output.close();
 			input.close();

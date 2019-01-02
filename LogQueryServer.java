@@ -27,8 +27,7 @@ class LogQueryServer {
 			} catch(IOException ex) {
 				exceptionHandler(ex);
 			}
-			LogQueryServerThread worker =
-				new LogQueryServerThread(client_sock, logFilePath);
+			LogQueryServerThread worker = new LogQueryServerThread(client_sock, logFilePath);
 			worker.start();
 		}
 	}

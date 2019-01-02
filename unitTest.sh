@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 ## Unit Test Configuration
-server_list=("127.0.0.1" "127.0.0.1" "127.0.0.1")
-port_list=("1024")
+server_list=("192.168.43.85")
+port_list=(1024)
 log_path="/tmp/logs"
 server_list_num=${#server_list[@]}
 result_path=/tmp/logQueryResult

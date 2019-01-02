@@ -5,23 +5,28 @@ import java.util.logging.*;
 
 public class LogGenerator
 {
-	//private data members
+	//Standard logger data member
 	private final static Logger LOGGER = Logger.getLogger(LogGenerator.class.getName());
-	// File size in MB
+
+	//File size in MB for log generation
 	private int    FileSize;
-	// Machine ID
+
+	//Machine ID
 	private int MachineID;
 
 	private String FileName;
 	File file;
+
 	private FileHandler fileHandler;
-	// Total log messages logged already
+
+	//Total log messages logged already
 	private int TotalMessages = 0;
-	// indicates if the logging should continue or not
+
+	//Flag ondicator for the logging should continue or not
 	private boolean runStatus = true;
 
-	// class functions
-	// Init class members
+
+	//Init class members
 	LogGenerator(String log_path, int FileSize, int MachineID)
 	{
 		this.MachineID = MachineID;
@@ -30,27 +35,36 @@ public class LogGenerator
 		file = new File(FileName);
 	}
 
-	// Update the run Status
+	//Update the run Status
 	private void updateRunStatus()
 	{
-		// Get the number of bytes in the file
+		//Get the number of bytes in the file (bytes)
 		long length = file.length();
 		if(length > (FileSize * 1024 * 1024) )
 			runStatus = false;
 	}
 
+	/*
+	***Log generation
+	Takes LogFormatter.java definition for generate random log
+	in a determined machine
+	*/
 	private void generateLog()
 	{
 		int num1 = 0; int num2; int SomeMachineID1 = 0; int SomeMachineID2 = 0;
+		//Information saved to be printed in the log
 		Random gen1 = new Random(System.currentTimeMillis());
 		Random gen2 = new Random(System.currentTimeMillis());
+
 		while(runStatus)
 		{
+			//Proposeed algortih to generate the random log files
 			num2 = gen2.nextInt(4) + 1;
 			while(num2 == MachineID)
 			{
 				num2 = gen2.nextInt(4) + 1;
 			}
+
 			if(num2 > MachineID)
 			{
 				SomeMachineID1 = MachineID;
@@ -65,7 +79,7 @@ public class LogGenerator
 			if(num1 >= 30)
 			{
 				// Log frequent messages
-				if(num1%2 == 0)
+				if(num1%2 == 0) //50%
 					LOGGER.info("INFO log.  MachineID:" + MachineID + " SomeMachineIDs: " + SomeMachineID1 + "," + SomeMachineID2);
 				else
 					LOGGER.warning("WARNING log. MachineID: " + MachineID + "  SomeMachineIDs: " + SomeMachineID1 + "," + SomeMachineID2);
@@ -80,7 +94,7 @@ public class LogGenerator
 			}
 			else
 			{
-				// Log rare message
+				// Log rare message < 5%
 				LOGGER.severe("SEVERE. MachineID: " + MachineID + "  SomeMachineIDs: " + SomeMachineID1 + "," + SomeMachineID2);
 			}
 
@@ -90,7 +104,7 @@ public class LogGenerator
 		}
 	}
 
-	// Set FileHandler attributes
+	//Set FileHandler attributes
 	private void SetFileHandler()
 	{
 		try {
@@ -100,16 +114,16 @@ public class LogGenerator
 		} catch (SecurityException ex) {
 			LOGGER.log(Level.SEVERE, null, ex);
 		}
-		// Set the formatting
+		//Set the formatting
 		fileHandler.setFormatter(new LogFormatter());
 		LOGGER.addHandler(fileHandler);
-		// set all levels
+		//Set all levels
 		LOGGER.setLevel(Level.ALL);
-		// turn off console logging
+		//Turn off console logging
 		LOGGER.setUseParentHandlers(false);
 	}
 
-	// Common generate function
+	//Common generate function
 	private void generate()
 	{
 		SetFileHandler();

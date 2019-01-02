@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.Date;
 import java.util.logging.*;
 
-// This custom formatter formats parts of a log record to a single line
+//Custom formatterfor a generated single line
 class LogFormatter extends Formatter {
     // This method is called for every log records
     public String format(LogRecord rec) {
